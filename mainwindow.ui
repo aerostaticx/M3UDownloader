@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string>iBroadcast M3UDownloader</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -80,7 +83,7 @@
      </spacer>
     </item>
     <item row="1" column="1" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="splashLabel">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -96,7 +99,7 @@
      </widget>
     </item>
     <item row="3" column="1" alignment="Qt::AlignHCenter">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="loginButton">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -104,7 +107,7 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Login</string>
       </property>
       <property name="iconSize">
        <size>
@@ -115,7 +118,7 @@
      </widget>
     </item>
     <item row="2" column="1" alignment="Qt::AlignHCenter">
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="tokenInput">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -155,7 +158,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
