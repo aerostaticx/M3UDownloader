@@ -27,10 +27,10 @@ void MainWindow::on_loginButton_clicked()
 
     QJsonObject jsonObject
     {
-        {"client","Will"},
+        {"client","M3UDownloader"},
         {"app_id",1134},
-        {"version","1.0"},
-        {"device_name","WillComp"},
+        {"version",VER_NUM},
+        {"device_name",QHostInfo::localHostName()},
         {"user_agent",request.header(QNetworkRequest::UserAgentHeader).toString()},
         {"mode","login_token"},
         {"type","account"},

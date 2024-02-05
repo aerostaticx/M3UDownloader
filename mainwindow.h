@@ -8,6 +8,9 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QNetworkProxy>
+#include <QHostInfo>
+
+#define VER_NUM 1.0f
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
