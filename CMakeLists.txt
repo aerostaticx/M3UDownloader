@@ -39,6 +39,10 @@ else()
     else()
         add_executable(M3UDownloader
             ${PROJECT_SOURCES}
+            networkhandler.h networkhandler.cpp
+            version.h
+
+
         )
     endif()
 endif()

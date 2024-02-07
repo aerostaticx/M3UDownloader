@@ -3,14 +3,6 @@
 
 #include <QMainWindow>
 #include <QDebug>
-#include <QNetworkReply>
-#include<QNetworkAccessManager>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QNetworkProxy>
-#include <QHostInfo>
-
-#define VER_NUM 1.0f
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,12 +17,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QString getTokenInput();
 
+signals:
+    void loginRequest(QString loginToken);
 private slots:
     void on_loginButton_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QNetworkAccessManager* manager;
+
 };
 #endif // MAINWINDOW_H
