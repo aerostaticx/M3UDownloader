@@ -9,6 +9,18 @@ NetworkHandler::~NetworkHandler()
     delete manager;
 }
 
+void NetworkHandler::replyHandler()
+{
+    if(this -> reply -> error() == QNetworkReply::NoError)
+    {
+        QJsonDocument json = QJsonDocument::fromJson(reply -> readAll());
+    }
+    else
+    {
+        emit this -> emitReplyError(replyErrors::LOGIN_ERROR);
+    }
+}
+
 void NetworkHandler::login(QString loginToken)
 {
     QNetworkRequest request;
@@ -30,7 +42,7 @@ void NetworkHandler::login(QString loginToken)
 
     QJsonDocument jsonDoc(jsonObject);
     QByteArray jsonPayload = jsonDoc.toJson();
-    QNetworkReply* reply = this -> manager -> post(request,jsonPayload);
+    this -> reply = this -> manager -> post(request,jsonPayload);
 
-    // QObject::connect(reply,&QNetworkReply::finished,this,&MainWindow::handleReply(reply));
+    QObject::connect(this -> reply,&QNetworkReply::finished,this,&NetworkHandler::replyHandler);
 }

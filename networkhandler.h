@@ -10,6 +10,12 @@
 #include <QNetworkProxy>
 #include <QHostInfo>
 #include "version.h"
+
+enum replyErrors
+{
+    LOGIN_ERROR = 0
+};
+
 class NetworkHandler : public QObject
 {
     Q_OBJECT
@@ -18,8 +24,15 @@ public:
     ~NetworkHandler();
 public slots:
     void login(QString loginToken);
+
+private slots:
+    void replyHandler();
 private:
     QNetworkAccessManager* manager;
+    QNetworkReply* reply;
+
+signals:
+    void emitReplyError(replyErrors outputError);
 };
 
 #endif // NETWORKHANDLER_H

@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 
 
     QObject::connect(&w,&MainWindow::loginRequest,&nh,&NetworkHandler::login);
+    QObject::connect(&nh,&NetworkHandler::emitReplyError,&w,&MainWindow::handleReplyErrors);
 
     return a.exec();
 }
