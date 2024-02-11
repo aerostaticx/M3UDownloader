@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-
     QObject::connect(&w,&MainWindow::loginRequest,&nh,&NetworkHandler::login);
     QObject::connect(&nh,&NetworkHandler::emitReplyError,&w,&MainWindow::handleReplyErrors);
 

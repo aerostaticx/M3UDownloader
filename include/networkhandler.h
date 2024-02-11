@@ -13,7 +13,8 @@
 
 enum replyErrors
 {
-    LOGIN_ERROR = 0
+    LOGIN_ERROR = 0,
+    TOKEN_ERROR,
 };
 
 class NetworkHandler : public QObject

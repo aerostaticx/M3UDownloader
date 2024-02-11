@@ -14,6 +14,14 @@ void NetworkHandler::replyHandler()
     if(this -> reply -> error() == QNetworkReply::NoError)
     {
         QJsonDocument json = QJsonDocument::fromJson(reply -> readAll());
+        if(json["result"] == false)
+        {
+            emit this -> emitReplyError(replyErrors::TOKEN_ERROR);
+        }
+        else
+        {
+
+        }
     }
     else
     {

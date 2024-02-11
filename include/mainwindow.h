@@ -23,7 +23,7 @@ public:
     QString getTokenInput();
 
 private slots:
-    void showLoginError();
+    void showLoginError(const QString error);
     void hideLoginError();
     void on_loginButton_clicked();
 private:
