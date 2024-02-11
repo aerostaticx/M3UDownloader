@@ -27,10 +27,15 @@ public slots:
     void login(QString loginToken);
 
 private slots:
-    void replyHandler();
+    void loginReplyHandler();
+    void getLibraryReplyHandler();
 private:
+    void getLibrary();
     QNetworkAccessManager* manager;
     QNetworkReply* reply;
+    QString userToken = "";
+    QString userId = "";
+    QJsonDocument library;
 
 signals:
     void emitReplyError(replyErrors outputError);

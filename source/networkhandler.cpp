@@ -9,7 +9,50 @@ NetworkHandler::~NetworkHandler()
     delete manager;
 }
 
-void NetworkHandler::replyHandler()
+void NetworkHandler::getLibraryReplyHandler()
+{
+    if(this -> reply -> error() == QNetworkReply::NoError)
+    {
+        QJsonDocument json = QJsonDocument::fromJson(reply -> readAll());
+        if(json["result"] == false)
+        {
+            emit this -> emitReplyError(replyErrors::LOGIN_ERROR);
+        }
+        else
+        {
+        }
+    }
+    else
+    {
+        emit this -> emitReplyError(replyErrors::LOGIN_ERROR);
+    }
+}
+
+void NetworkHandler::getLibrary()
+{
+    QNetworkRequest request;
+    request.setUrl(QUrl("http://library.ibroadcast.com"));
+    request.setHeader(QNetworkRequest::UserAgentHeader,QVariant("M3UDownloader/1.0 (Windows11; en-US; x64)"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/json"));
+
+    QJsonObject jsonObject
+        {
+            {"client","M3UDownloader"},
+            {"version",VER_NUM},
+            {"device_name",QHostInfo::localHostName()},
+            {"token",this->userToken},
+            {"user_id",this->userId},
+            {"mode","library"}
+        };
+
+    QJsonDocument jsonDoc(jsonObject);
+    QByteArray jsonPayload = jsonDoc.toJson();
+    this -> reply = this -> manager -> post(request,jsonPayload);
+
+    QObject::connect(this -> reply,&QNetworkReply::finished,this,&NetworkHandler::getLibraryReplyHandler);
+}
+
+void NetworkHandler::loginReplyHandler()
 {
     if(this -> reply -> error() == QNetworkReply::NoError)
     {
@@ -20,7 +63,9 @@ void NetworkHandler::replyHandler()
         }
         else
         {
-
+            this -> userId = json["user"]["id"].toString();
+            this -> userToken = json["user"]["token"].toString();
+            this -> getLibrary();
         }
     }
     else
@@ -52,5 +97,5 @@ void NetworkHandler::login(QString loginToken)
     QByteArray jsonPayload = jsonDoc.toJson();
     this -> reply = this -> manager -> post(request,jsonPayload);
 
-    QObject::connect(this -> reply,&QNetworkReply::finished,this,&NetworkHandler::replyHandler);
+    QObject::connect(this -> reply,&QNetworkReply::finished,this,&NetworkHandler::loginReplyHandler);
 }
