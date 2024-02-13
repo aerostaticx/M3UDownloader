@@ -11,7 +11,7 @@ NetworkHandler::~NetworkHandler()
 
 void NetworkHandler::createHashes(const QJsonObject& artistsObj,const QJsonObject& albumsObj, const QJsonObject& tracksObj)
 {
-    QJsonValue artistMap = artistsObj.end().value();
+    QJsonObject artistMap = artistsObj["map"].toObject();
     for(auto it = artistsObj.begin(); it != artistsObj.end() - 1; ++it)
     {
         QString artistID = it.key();
@@ -19,7 +19,7 @@ void NetworkHandler::createHashes(const QJsonObject& artistsObj,const QJsonObjec
         this -> artistHash[artistID] = artistName[artistMap["name"].toInt()].toString();
     }
 
-    QJsonValue albumMap = albumsObj.end().value();
+    QJsonObject albumMap = albumsObj["map"].toObject();
     for(auto it = albumsObj.begin(); it != albumsObj.end() - 1; ++it)
     {
         QString albumID = it.key();
@@ -27,15 +27,14 @@ void NetworkHandler::createHashes(const QJsonObject& artistsObj,const QJsonObjec
         this -> albumHash[albumID] = albumName[albumMap["name"].toInt()].toString();
     }
 
-    QJsonValue trackMap = tracksObj.end().value();
+    QJsonObject trackMap = tracksObj["map"].toObject();
     for(auto it = tracksObj.begin(); it != tracksObj.end() - 1; ++it)
     {
         QString trackID = it.key();
-        QJsonValue trackName = it.value();
-        qInfo() << trackMap["title"].toInt();
-        this -> songHash[trackID] = {trackName[trackMap["title"].toInt()].toString(),this -> albumHash[trackName[trackMap["album_id"].toInt()].toString()],this -> artistHash[trackName[trackMap["artist_id"].toInt()].toString()]};
+        QJsonValue trackInfo = it.value();
+        this -> songHash[trackID] = {trackInfo[trackMap["title"].toInt()].toString(),this -> albumHash[QString::number(trackInfo[trackMap["album_id"].toInt()].toInt())],this -> artistHash[QString::number(trackInfo[trackMap["artist_id"].toInt()].toInt())]};
     }
-
+    qInfo() << "hi";
 
 
 }
