@@ -7,6 +7,7 @@
 #include <QNetworkAccessManager>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QJsonArray>
 #include <QNetworkProxy>
 #include <QHostInfo>
 #include <QTextCodec>
@@ -32,7 +33,7 @@ private slots:
     void getLibraryReplyHandler();
 private:
     void getLibrary();
-    void createHashes(const QJsonObject& artistsObj,const QJsonObject& albumObj,const QJsonObject& tracksObj);
+    void createHashes(const QJsonObject& libraryObj);
 
     QNetworkAccessManager* manager;
     QNetworkReply* reply;
@@ -41,8 +42,7 @@ private:
     std::unordered_map<QString,QString> artistHash; //<artistID,artistName>
     std::unordered_map<QString,QString> albumHash; //<albumID,albumName>
     std::unordered_map<QString,std::array<QString,3>> songHash; //<songID : array<songName, albumName, artistName>>
-    std::unordered_map<QString,std::vector<QString>> playlistToSongHash; //<playlistID : vector<songID>>
-    std::unordered_map<QString,QString> playlistHash; //<playlistName : playlistID>
+    std::unordered_map<QString,std::vector<QString>> playlistHash; //<playlistName : vector<songID>>
 
 signals:
     void emitReplyError(replyErrors outputError);

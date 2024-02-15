@@ -9,8 +9,13 @@ NetworkHandler::~NetworkHandler()
     delete manager;
 }
 
-void NetworkHandler::createHashes(const QJsonObject& artistsObj,const QJsonObject& albumsObj, const QJsonObject& tracksObj)
+void NetworkHandler::createHashes(const QJsonObject& libraryObj)
 {
+    QJsonObject artistsObj = libraryObj["artists"].toObject();
+    QJsonObject albumsObj = libraryObj["albums"].toObject();
+    QJsonObject tracksObj = libraryObj["tracks"].toObject();
+    QJsonObject playlistsObj = libraryObj["playlists"].toObject();
+
     QJsonObject artistMap = artistsObj["map"].toObject();
     for(auto it = artistsObj.begin(); it != artistsObj.end() - 1; ++it)
     {
@@ -34,6 +39,21 @@ void NetworkHandler::createHashes(const QJsonObject& artistsObj,const QJsonObjec
         QJsonValue trackInfo = it.value();
         this -> songHash[trackID] = {trackInfo[trackMap["title"].toInt()].toString(),this -> albumHash[QString::number(trackInfo[trackMap["album_id"].toInt()].toInt())],this -> artistHash[QString::number(trackInfo[trackMap["artist_id"].toInt()].toInt())]};
     }
+
+    QJsonObject playlistMap = playlistsObj["map"].toObject();
+    for(auto it = playlistsObj.begin(); it != playlistsObj.end() - 1; ++it)
+    {
+        QString playlistID = it.key();
+        QJsonValue playlistInfo = it.value();
+        QJsonArray trackIDs = playlistInfo[playlistMap["tracks"].toInt()].toArray();
+        for(QJsonValue trackID : trackIDs)
+        {
+            this -> playlistHash[playlistInfo[playlistMap["name"].toInt()].toString()].push_back(QString::number(trackID.toInt()));
+        }
+        qInfo() << "";
+    }
+
+
     qInfo() << "hi";
 
 
@@ -52,11 +72,8 @@ void NetworkHandler::getLibraryReplyHandler()
         {
             QJsonObject masterObj = json.object();
             QJsonObject libraryObj = json["library"].toObject();
-            QJsonObject artistsObj = libraryObj["artists"].toObject();
-            QJsonObject albumsObj = libraryObj["albums"].toObject();
-            QJsonObject tracksObj = libraryObj["tracks"].toObject();
 
-            this -> createHashes(artistsObj,albumsObj,tracksObj);
+            this -> createHashes(libraryObj);
         }
     }
     else
