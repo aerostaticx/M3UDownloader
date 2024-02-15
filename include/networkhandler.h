@@ -46,6 +46,7 @@ private:
 
 signals:
     void emitReplyError(replyErrors outputError);
+    void emitLoginSuccessful();
 };
 
 #endif // NETWORKHANDLER_H

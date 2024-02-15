@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public slots:
+    void transitionWindow();
     void handleReplyErrors(replyErrors inputError);
 public:
     MainWindow(QWidget *parent = nullptr);

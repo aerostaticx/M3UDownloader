@@ -50,13 +50,7 @@ void NetworkHandler::createHashes(const QJsonObject& libraryObj)
         {
             this -> playlistHash[playlistInfo[playlistMap["name"].toInt()].toString()].push_back(QString::number(trackID.toInt()));
         }
-        qInfo() << "";
     }
-
-
-    qInfo() << "hi";
-
-
 }
 
 void NetworkHandler::getLibraryReplyHandler()
@@ -74,6 +68,7 @@ void NetworkHandler::getLibraryReplyHandler()
             QJsonObject libraryObj = json["library"].toObject();
 
             this -> createHashes(libraryObj);
+            emit this -> emitLoginSuccessful();
         }
     }
     else

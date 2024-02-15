@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     //Async code
     QObject::connect(&w,&MainWindow::loginRequest,&nh,&NetworkHandler::login);
     QObject::connect(&nh,&NetworkHandler::emitReplyError,&w,&MainWindow::handleReplyErrors);
+    QObject::connect(&nh,&NetworkHandler::emitLoginSuccessful,&w,&MainWindow::transitionWindow);
 
     return a.exec();
 }

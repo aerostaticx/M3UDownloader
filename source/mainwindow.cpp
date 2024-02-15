@@ -43,6 +43,11 @@ void MainWindow::hideLoginError()
     this -> ui -> loginFailureLabel -> setHidden(true);
 }
 
+void MainWindow::transitionWindow()
+{
+    this -> ui -> stackedWidget -> setCurrentIndex(1);
+}
+
 void MainWindow::on_loginButton_clicked()
 {
     this -> hideLoginError();
