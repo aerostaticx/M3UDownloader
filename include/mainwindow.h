@@ -27,6 +27,8 @@ private slots:
     void showLoginError(const QString error);
     void hideLoginError();
     void on_loginButton_clicked();
+    void on_convertButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

@@ -39,13 +39,9 @@ private:
     QNetworkReply* reply;
     QString userToken = "";
     QString userId = "";
-    std::unordered_map<QString,QString> artistHash; //<artistID,artistName>
-    std::unordered_map<QString,QString> albumHash; //<albumID,albumName>
-    std::unordered_map<QString,std::array<QString,3>> songHash; //<songID : array<songName, albumName, artistName>>
-    std::unordered_map<QString,std::vector<QString>> playlistHash; //<playlistName : vector<songID>>
-
 signals:
     void emitReplyError(replyErrors outputError);
+    void emitPopulateLibrary(QJsonObject libraryObj);
     void emitLoginSuccessful();
 };
 

@@ -54,3 +54,8 @@ void MainWindow::on_loginButton_clicked()
     emit loginRequest(this -> getTokenInput());
 }
 
+void MainWindow::on_convertButton_clicked()
+{
+
+}
+

@@ -24,7 +24,8 @@ file(GLOB Sources source/*.cpp)
 file(GLOB Headers include/*.h)
 file(GLOB UIs ui/*.ui)
 
-add_executable(M3UDownloader ${Sources} ${Headers} ${UIs})
+add_executable(M3UDownloader ${Sources} ${Headers} ${UIs}
+)
 
 target_include_directories(M3UDownloader PRIVATE "${PROJECT_SOURCE_DIR}/include")
 
