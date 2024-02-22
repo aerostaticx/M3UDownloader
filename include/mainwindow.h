@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDebug>
+#include <QFileDialog>
 #include "networkhandler.h"
 
 QT_BEGIN_NAMESPACE
@@ -30,6 +31,8 @@ private slots:
     void on_loginButton_clicked();
     void on_convertButton_clicked();
     void on_logoutButton_clicked();
+
+    void on_chooseDirectoryButton_clicked();
 
 private:
     Ui::MainWindow *ui;

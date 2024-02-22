@@ -64,9 +64,14 @@ void MainWindow::on_convertButton_clicked()
 
 }
 
-
 void MainWindow::on_logoutButton_clicked()
 {
     transitionMainWindow();
+}
+
+void MainWindow::on_chooseDirectoryButton_clicked()
+{
+    QString inputDirectory = QFileDialog::getExistingDirectory(this,tr("Open Directory"),"",QFileDialog::ShowDirsOnly);
+    this -> ui -> saveLocationInput -> setText(inputDirectory);
 }
 
