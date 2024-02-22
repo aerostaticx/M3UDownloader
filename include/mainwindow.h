@@ -16,7 +16,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public slots:
-    void transitionWindow();
+    void transitionConvertWindow();
+    void transitionMainWindow();
     void handleReplyErrors(replyErrors inputError);
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -28,6 +29,7 @@ private slots:
     void hideLoginError();
     void on_loginButton_clicked();
     void on_convertButton_clicked();
+    void on_logoutButton_clicked();
 
 private:
     Ui::MainWindow *ui;

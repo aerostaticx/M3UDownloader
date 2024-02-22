@@ -43,9 +43,14 @@ void MainWindow::hideLoginError()
     this -> ui -> loginFailureLabel -> setHidden(true);
 }
 
-void MainWindow::transitionWindow()
+void MainWindow::transitionConvertWindow()
 {
     this -> ui -> stackedWidget -> setCurrentIndex(1);
+}
+
+void MainWindow::transitionMainWindow()
+{
+    this -> ui -> stackedWidget -> setCurrentIndex(0);
 }
 
 void MainWindow::on_loginButton_clicked()
@@ -57,5 +62,11 @@ void MainWindow::on_loginButton_clicked()
 void MainWindow::on_convertButton_clicked()
 {
 
+}
+
+
+void MainWindow::on_logoutButton_clicked()
+{
+    transitionMainWindow();
 }
 
