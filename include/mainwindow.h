@@ -34,6 +34,8 @@ private slots:
 
     void on_chooseDirectoryButton_clicked();
 
+    void on_playlistInput_textChanged(const QString &arg1);
+
 private:
     void showConversionError(const QString error);
     void hideConversionError();

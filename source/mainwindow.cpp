@@ -32,7 +32,7 @@ void MainWindow::handleConversionErrors(conversionErrors inputError)
 {
     switch (inputError) {
     case conversionErrors::PLAYLIST_NOT_FOUND_ERROR:
-        this -> showLoginError("There is no playlist found.");
+        this -> showConversionError("Playlist not found or empty.");
         break;
     default:
         break;
@@ -98,5 +98,11 @@ void MainWindow::on_chooseDirectoryButton_clicked()
 {
     QString inputDirectory = QFileDialog::getExistingDirectory(this,tr("Open Directory"),"",QFileDialog::ShowDirsOnly);
     this -> ui -> saveLocationInput -> setText(inputDirectory);
+}
+
+
+void MainWindow::on_playlistInput_textChanged(const QString &arg1)
+{
+    this -> ui -> conversionFailureLabel -> setHidden(true);
 }
 

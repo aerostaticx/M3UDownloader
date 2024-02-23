@@ -11,6 +11,6 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
     //Handle playlist not found
     if(this -> library.getPlaylistSongs(playlistRequested).empty())
     {
-        qInfo() << "Playlist doesn't exist!";
+        emit this -> emitConversionError(conversionErrors::PLAYLIST_NOT_FOUND_ERROR);
     }
 }

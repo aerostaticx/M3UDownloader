@@ -14,12 +14,14 @@ enum conversionErrors
 class ConversionHandler : public QObject
 {
     Q_OBJECT
-private:
-    const Library& library;
-public:
-    ConversionHandler(const Library& inputLib);
-    ~ConversionHandler();
-public slots:
-    void convert(QString playlistRequested, QString saveLocation, QString relativeStructure);
+    private:
+        const Library& library;
+    public:
+        ConversionHandler(const Library& inputLib);
+        ~ConversionHandler();
+    public slots:
+        void convert(QString playlistRequested, QString saveLocation, QString relativeStructure);
+    signals:
+        void emitConversionError(conversionErrors outputError);
 };
 #endif // CONVERSIONHANDLER_H

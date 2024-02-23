@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     QObject::connect(&nh,&NetworkHandler::emitReplyError,&w,&MainWindow::handleReplyErrors);
     QObject::connect(&nh,&NetworkHandler::emitPopulateLibrary,&l,&Library::populateLibrary);
     QObject::connect(&nh,&NetworkHandler::emitLoginSuccessful,&w,&MainWindow::transitionConvertWindow);
+    QObject::connect(&ch,&ConversionHandler::emitConversionError,&w,&MainWindow::handleConversionErrors);
 
     return a.exec();
 }
