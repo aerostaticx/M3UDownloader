@@ -35,7 +35,7 @@ void Library::populateLibrary(const QJsonObject& libraryObj)
     {
         QString trackID = it.key();
         QJsonValue trackInfo = it.value();
-        this -> songHash[trackID] = {trackInfo[trackMap["title"].toInt()].toString(),this -> albumHash[QString::number(trackInfo[trackMap["album_id"].toInt()].toInt())],this -> artistHash[QString::number(trackInfo[trackMap["artist_id"].toInt()].toInt())]};
+        this -> songHash[trackID] = {trackInfo[trackMap["title"].toInt()].toString(),this -> albumHash[QString::number(trackInfo[trackMap["album_id"].toInt()].toInt())],this -> artistHash[QString::number(trackInfo[trackMap["artist_id"].toInt()].toInt())],trackInfo[trackMap["type"].toInt()].toString()};
     }
 
     QJsonObject playlistMap = playlistsObj["map"].toObject();
@@ -50,3 +50,14 @@ void Library::populateLibrary(const QJsonObject& libraryObj)
         }
     }
 }
+
+std::vector<QString> Library::getPlaylistSongs(QString playlistName)
+{
+    if(this -> playlistHash.find(playlistName) == this -> playlistHash.end())
+    {
+        return {};
+    }
+    return this -> playlistHash[playlistName];
+}
+
+
