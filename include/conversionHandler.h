@@ -5,6 +5,12 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include "library.h"
+
+enum conversionErrors
+{
+    PLAYLIST_NOT_FOUND_ERROR = 0,
+};
+
 class ConversionHandler : public QObject
 {
     Q_OBJECT

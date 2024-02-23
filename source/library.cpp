@@ -51,13 +51,13 @@ void Library::populateLibrary(const QJsonObject& libraryObj)
     }
 }
 
-std::vector<QString> Library::getPlaylistSongs(QString playlistName)
+std::vector<QString> Library::getPlaylistSongs(QString playlistName) const
 {
     if(this -> playlistHash.find(playlistName) == this -> playlistHash.end())
     {
         return {};
     }
-    return this -> playlistHash[playlistName];
+    return this -> playlistHash.at(playlistName);
 }
 
 

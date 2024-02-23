@@ -22,6 +22,18 @@ void MainWindow::handleReplyErrors(replyErrors inputError)
         break;
     case replyErrors::TOKEN_ERROR:
         this -> showLoginError("Your token was not found. Please make sure to enter the correct token.");
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::handleConversionErrors(conversionErrors inputError)
+{
+    switch (inputError) {
+    case conversionErrors::PLAYLIST_NOT_FOUND_ERROR:
+        this -> showLoginError("There is no playlist found.");
+        break;
     default:
         break;
     }
@@ -30,6 +42,17 @@ void MainWindow::handleReplyErrors(replyErrors inputError)
 QString MainWindow::getTokenInput()
 {
     return this -> ui -> tokenInput -> text();
+}
+
+void MainWindow::showConversionError(const QString error)
+{
+    this -> ui -> conversionFailureLabel -> setHidden(false);
+    this -> ui -> conversionFailureLabel -> setText("<font color='red'>" + error + "</font>");
+}
+
+void MainWindow::hideConversionError()
+{
+    this -> ui -> conversionFailureLabel -> setHidden(true);
 }
 
 void MainWindow::showLoginError(const QString error)

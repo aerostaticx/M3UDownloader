@@ -11,7 +11,7 @@ public:
     explicit Library(QObject *parent = nullptr);
     ~Library();
 
-    std::vector<QString> getPlaylistSongs(QString playlistName); //returns empty if playlist doesn't exist. In case empty playlist with matching name exists, also return empty.
+    std::vector<QString> getPlaylistSongs(QString playlistName) const; //returns empty if playlist doesn't exist. In case empty playlist with matching name exists, also return empty.
     std::unordered_map<QString,std::array<QString,3>> getSongHash();
 public slots:
     void populateLibrary(const QJsonObject& libraryObj);

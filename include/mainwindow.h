@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include "networkhandler.h"
+#include "conversionHandler.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,14 +21,13 @@ public slots:
     void transitionConvertWindow();
     void transitionMainWindow();
     void handleReplyErrors(replyErrors inputError);
+    void handleConversionErrors(conversionErrors conversionError);
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QString getTokenInput();
 
 private slots:
-    void showLoginError(const QString error);
-    void hideLoginError();
     void on_loginButton_clicked();
     void on_convertButton_clicked();
     void on_logoutButton_clicked();
@@ -35,6 +35,10 @@ private slots:
     void on_chooseDirectoryButton_clicked();
 
 private:
+    void showConversionError(const QString error);
+    void hideConversionError();
+    void showLoginError(const QString error);
+    void hideLoginError();
     Ui::MainWindow *ui;
 
 signals:
