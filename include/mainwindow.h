@@ -38,7 +38,7 @@ private:
     Ui::MainWindow *ui;
 
 signals:
-    void conversionRequest();
+    void conversionRequest(QString playlistRequested, QString saveLocation, QString relativeStructure);
     void loginRequest(QString loginToken);
 
 };

@@ -6,7 +6,8 @@ ConversionHandler::ConversionHandler(const Library& l) : library(l)
 ConversionHandler::~ConversionHandler()
 {}
 
-void ConversionHandler::convert()
+void ConversionHandler::convert(QString playlistRequested, QString saveLocation, QString relativeStructure)
 {
-    qInfo() << "HI";
+    //Handle playlist not found
+
 }

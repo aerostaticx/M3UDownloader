@@ -14,6 +14,6 @@ public:
     ConversionHandler(const Library& inputLib);
     ~ConversionHandler();
 public slots:
-    void convert();
+    void convert(QString playlistRequested, QString saveLocation, QString relativeStructure);
 };
 #endif // CONVERSIONHANDLER_H

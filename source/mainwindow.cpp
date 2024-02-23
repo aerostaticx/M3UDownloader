@@ -63,7 +63,7 @@ void MainWindow::on_convertButton_clicked()
 {
     //send the location input, the playlist name, and directory format to the conversionHandler
     //ConversionHandler also needs the library hashes.
-    emit conversionRequest();
+    emit conversionRequest(this -> ui -> playlistInput -> text(), this -> ui -> saveLocationInput -> text(), this -> ui -> saveStructureCombo -> currentText());
 }
 
 void MainWindow::on_logoutButton_clicked()
