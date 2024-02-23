@@ -10,6 +10,9 @@ class Library : public QObject
 public:
     explicit Library(QObject *parent = nullptr);
     ~Library();
+
+    std::unordered_map<QString,std::vector<QString>> getPlaylistHash();
+    std::unordered_map<QString,std::array<QString,3>> getSongHash();
 public slots:
     void populateLibrary(const QJsonObject& libraryObj);
 private:

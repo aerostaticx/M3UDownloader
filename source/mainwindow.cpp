@@ -61,7 +61,9 @@ void MainWindow::on_loginButton_clicked()
 
 void MainWindow::on_convertButton_clicked()
 {
-
+    //send the location input, the playlist name, and directory format to the conversionHandler
+    //ConversionHandler also needs the library hashes.
+    emit conversionRequest();
 }
 
 void MainWindow::on_logoutButton_clicked()

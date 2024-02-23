@@ -38,6 +38,7 @@ private:
     Ui::MainWindow *ui;
 
 signals:
+    void conversionRequest();
     void loginRequest(QString loginToken);
 
 };
