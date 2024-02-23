@@ -183,7 +183,7 @@
         <item row="4" column="1">
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Choose the location you want to save to.</string>
+           <string>Choose the root location you want to save to.</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -332,7 +332,7 @@
         <item row="8" column="1">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Choose the local directory structure where the songs are located, relative to your save path.</string>
+           <string>Relative to the save root location, choose how your local directory is structured.</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
