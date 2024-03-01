@@ -60,4 +60,9 @@ std::vector<QString> Library::getPlaylistSongs(QString playlistName) const
     return this -> playlistHash.at(playlistName);
 }
 
+std::unordered_map<QString,std::array<QString,4>> Library::getSongHash() const
+{
+    return this -> songHash;
+}
+
 

@@ -17,6 +17,7 @@ void NetworkHandler::getLibraryReplyHandler()
         if(json["result"] == false)
         {
             emit this -> emitReplyError(replyErrors::LOGIN_ERROR);
+            return;
         }
         else
         {
@@ -30,6 +31,7 @@ void NetworkHandler::getLibraryReplyHandler()
     else
     {
         emit this -> emitReplyError(replyErrors::LOGIN_ERROR);
+        return;
     }
 }
 
@@ -65,6 +67,7 @@ void NetworkHandler::loginReplyHandler()
         if(json["result"] == false)
         {
             emit this -> emitReplyError(replyErrors::TOKEN_ERROR);
+            return;
         }
         else
         {
@@ -76,6 +79,7 @@ void NetworkHandler::loginReplyHandler()
     else
     {
         emit this -> emitReplyError(replyErrors::LOGIN_ERROR);
+        return;
     }
 }
 

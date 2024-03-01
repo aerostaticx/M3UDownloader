@@ -193,7 +193,7 @@
         <item row="8" column="1">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Relative to the save root location, choose how your local directory is structured.</string>
+           <string>Choose how your local song directory is structured, relative to the save root location.</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
