@@ -23,14 +23,10 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
     std::unordered_map<QString,std::array<QString,4>> songHash = this -> library.getSongHash();
     if(relativeStructure == "album/artist/songfile")
     {
-        qInfo() << "Working..." << Qt::endl;
         for(QString songID : playlistSongs)
         {
-            qInfo() << songHash[songID][3];
             out << songHash[songID][2] + '/' + songHash[songID][1] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
         }
     }
-    qInfo() << "Done!" << Qt::endl;
-
     outputFile.close();
 }
