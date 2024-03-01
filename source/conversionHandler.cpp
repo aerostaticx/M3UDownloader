@@ -21,11 +21,39 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
 
     std::vector<QString> playlistSongs = this -> library.getPlaylistSongs(playlistRequested);
     std::unordered_map<QString,std::array<QString,4>> songHash = this -> library.getSongHash();
-    if(relativeStructure == "album/artist/songfile")
+    if(relativeStructure == "artist/album/songfile")
     {
         for(QString songID : playlistSongs)
         {
             out << songHash[songID][2] + '/' + songHash[songID][1] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
+        }
+    }
+    else if(relativeStructure == "album/artist/songfile")
+    {
+        for(QString songID : playlistSongs)
+        {
+            out << songHash[songID][1] + '/' + songHash[songID][2] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
+        }
+    }
+    else if(relativeStructure == "artist/songfile")
+    {
+        for(QString songID : playlistSongs)
+        {
+            out << songHash[songID][2] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
+        }
+    }
+    else if(relativeStructure == "album/songfile")
+    {
+        for(QString songID : playlistSongs)
+        {
+            out << songHash[songID][1] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
+        }
+    }
+    else if(relativeStructure == "songfile")
+    {
+        for(QString songID : playlistSongs)
+        {
+            out << songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
         }
     }
     outputFile.close();
