@@ -1,10 +1,18 @@
 #include "conversionHandler.h"
-#include <iostream>
 ConversionHandler::ConversionHandler(const Library& l) : library(l)
 {}
 
 ConversionHandler::~ConversionHandler()
 {}
+
+void ConversionHandler::replacementHelper(QString& input)
+{
+    std::vector<char> dict{'<','>',':','"','/','\\','|','?','*'};
+    for(char charToReplace : dict)
+    {
+        input.remove(charToReplace);
+    }
+}
 
 void ConversionHandler::convert(QString playlistRequested, QString saveLocation, QString relativeStructure)
 {
@@ -25,6 +33,7 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
     {
         for(QString songID : playlistSongs)
         {
+            this -> replacementHelper(songHash[songID][0]);
             out << songHash[songID][2] + '/' + songHash[songID][1] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
         }
     }
@@ -32,6 +41,7 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
     {
         for(QString songID : playlistSongs)
         {
+            this -> replacementHelper(songHash[songID][0]);
             out << songHash[songID][1] + '/' + songHash[songID][2] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
         }
     }
@@ -39,6 +49,7 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
     {
         for(QString songID : playlistSongs)
         {
+            this -> replacementHelper(songHash[songID][0]);
             out << songHash[songID][2] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
         }
     }
@@ -46,6 +57,7 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
     {
         for(QString songID : playlistSongs)
         {
+            this -> replacementHelper(songHash[songID][0]);
             out << songHash[songID][1] + '/' + songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
         }
     }
@@ -53,6 +65,7 @@ void ConversionHandler::convert(QString playlistRequested, QString saveLocation,
     {
         for(QString songID : playlistSongs)
         {
+            this -> replacementHelper(songHash[songID][0]);
             out << songHash[songID][0] + '.' + this -> MIMEhash[songHash[songID][3]] << Qt::endl;
         }
     }

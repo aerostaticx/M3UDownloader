@@ -6,6 +6,8 @@
 #include <QJsonArray>
 #include <QFile>
 #include "library.h"
+#include <algorithm>
+#include <string>
 
 
 enum conversionErrors
@@ -18,6 +20,7 @@ class ConversionHandler : public QObject
     Q_OBJECT
     private:
         const Library& library;
+        void replacementHelper(QString& inputString);
         std::unordered_map<QString,QString> MIMEhash = {  {"audio/3gpp", "*3gpp"},
                                                          {"audio/mp3", "*mp3"},
                                                          {"audio/wave", "*wav"},
